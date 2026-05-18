@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booty Bay: The Secret Pirate Port That Makes People Quit Their Jobs & Sail Away</title>
+  <meta name="description" content="Booty Bay is the internet's most dangerous rabbit hole — part pirate lore, part fantasy escape, part life philosophy. Enter if you dare. This domain is also for sale." />
+  <meta property="og:title" content="Booty Bay: The Secret Pirate Port That Makes People Quit Their Jobs & Sail Away" />
+  <meta property="og:description" content="Discover the legendary pirate haven that's captured millions of imaginations. Also: this premium domain is for sale." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #0a0705;
+      --parchment: #f5e6c8;
+      --rum: #8b3a0f;
+      --gold: #c9982a;
+      --gold-bright: #f0c040;
+      --ocean: #0d3d56;
+      --ocean-light: #1a6080;
+      --fog: #b0c4c8;
+      --blood: #6b1a1a;
+      --rope: #7a5c30;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--ink);
+      color: var(--parchment);
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.7;
+      overflow-x: hidden;
+      cursor: crosshair;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.35;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 2rem;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 110%, var(--ocean) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 20% -10%, #1a3a2a 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 80% -5%, #2a1a0a 0%, transparent 60%),
+        var(--ink);
+      z-index: 0;
+    }
+
+    /* Animated waves */
+    .waves {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 200%;
+      height: 120px;
+      z-index: 1;
+    }
+    .wave {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .wave svg { width: 100%; height: 100%; }
+    .wave-1 { animation: waveMove 8s linear infinite; opacity: 0.4; }
+    .wave-2 { animation: waveMove 12s linear infinite reverse; opacity: 0.2; margin-bottom: 10px; }
+    @keyframes waveMove {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* Stars */
+    .stars {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: var(--parchment);
+      border-radius: 50%;
+      animation: twinkle var(--d, 3s) ease-in-out infinite alternate;
+    }
+    @keyframes twinkle {
+      from { opacity: 0.1; transform: scale(0.8); }
+      to   { opacity: 0.9; transform: scale(1.2); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+
+    .eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.3s;
+    }
+
+    h1 {
+      font-family: 'Pirata One', cursive;
+      font-size: clamp(3rem, 9vw, 7.5rem);
+      line-height: 0.95;
+      color: var(--gold-bright);
+      text-shadow:
+        0 0 40px rgba(201,152,42,0.5),
+        0 4px 0 var(--rum),
+        0 8px 20px rgba(0,0,0,0.8);
+      letter-spacing: 0.02em;
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeUp 1s ease forwards 0.5s;
+    }
+
+    .subtitle {
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-style: italic;
+      color: var(--fog);
+      max-width: 640px;
+      margin: 0 auto 2.5rem;
+      opacity: 0;
+      animation: fadeUp 1s ease forwards 0.8s;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      opacity: 0;
+      animation: fadeUp 1s ease forwards 1.1s;
+    }
+
+    .btn {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.9rem 2rem;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn:hover { transform: translateY(-3px); }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--ink);
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      box-shadow: 0 4px 20px rgba(201,152,42,0.4);
+    }
+    .btn-primary:hover { box-shadow: 0 8px 30px rgba(201,152,42,0.6); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--parchment);
+      border: 1px solid rgba(245,230,200,0.3);
+    }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 140px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0;
+      animation: fadeUp 1s ease forwards 1.6s;
+    }
+    .scroll-hint span {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      color: var(--fog);
+      opacity: 0.6;
+    }
+    .scroll-arrow {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(0.8); }
+      50%       { opacity: 1;   transform: scaleY(1); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      text-align: center;
+      padding: 3rem 0 1rem;
+      color: var(--gold);
+      font-size: 1.4rem;
+      letter-spacing: 0.5em;
+      opacity: 0.5;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-family: 'Pirata One', cursive;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      color: var(--gold-bright);
+      text-shadow: 0 0 30px rgba(201,152,42,0.3);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    h3 {
+      font-family: 'Pirata One', cursive;
+      font-size: 1.6rem;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    p { color: var(--fog); margin-bottom: 1rem; }
+    p strong { color: var(--parchment); font-weight: 600; }
+
+    /* ── INTRO GRID ── */
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    @media (max-width: 700px) { .intro-grid { grid-template-columns: 1fr; gap: 2rem; } }
+
+    .big-quote {
+      font-family: 'Pirata One', cursive;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: var(--parchment);
+      line-height: 1.2;
+      border-left: 3px solid var(--gold);
+      padding-left: 1.5rem;
+    }
+    .big-quote em { color: var(--gold-bright); font-style: normal; }
+
+    /* ── LORE CARDS ── */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .card {
+      background: linear-gradient(135deg, rgba(139,58,15,0.12), rgba(13,61,86,0.15));
+      border: 1px solid rgba(201,152,42,0.2);
+      padding: 2rem;
+      position: relative;
+      transition: border-color 0.3s, transform 0.3s;
+      clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+    }
+    .card:hover {
+      border-color: rgba(201,152,42,0.6);
+      transform: translateY(-4px);
+    }
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    /* ── MAP SECTION ── */
+    .map-section {
+      background: linear-gradient(135deg, rgba(13,61,86,0.3), rgba(10,7,5,0));
+      border: 1px solid rgba(201,152,42,0.15);
+      padding: 4rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .map-section::before {
+      content: '⚓';
+      position: absolute;
+      right: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 8rem;
+      opacity: 0.04;
+      pointer-events: none;
+    }
+
+    /* ── TIMELINE ── */
+    .timeline { margin-top: 3rem; }
+    .tl-item {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+      align-items: start;
+    }
+    .tl-year {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--gold);
+      text-align: right;
+      padding-top: 0.3rem;
+      letter-spacing: 0.1em;
+    }
+    .tl-body {
+      border-left: 1px solid rgba(201,152,42,0.3);
+      padding-left: 2rem;
+      position: relative;
+    }
+    .tl-body::before {
+      content: '';
+      position: absolute;
+      left: -5px;
+      top: 8px;
+      width: 9px;
+      height: 9px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+    /* ── SALE BANNER ── */
+    .sale-section {
+      padding: 5rem 2rem;
+      text-align: center;
+      position: relative;
+    }
+    .sale-box {
+      max-width: 700px;
+      margin: 0 auto;
+      border: 1px solid var(--gold);
+      padding: 3.5rem;
+      position: relative;
+      background: linear-gradient(135deg, rgba(139,58,15,0.1), rgba(13,61,86,0.1));
+    }
+    .sale-box::before, .sale-box::after {
+      content: '✦';
+      position: absolute;
+      color: var(--gold);
+      font-size: 1rem;
+      opacity: 0.5;
+    }
+    .sale-box::before { top: 1rem; left: 1rem; }
+    .sale-box::after  { bottom: 1rem; right: 1rem; }
+
+    .sale-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.4em;
+      background: var(--gold);
+      color: var(--ink);
+      padding: 0.3rem 1rem;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+    }
+
+    .sale-domain {
+      font-family: 'Pirata One', cursive;
+      font-size: clamp(2rem, 6vw, 4rem);
+      color: var(--gold-bright);
+      text-shadow: 0 0 30px rgba(240,192,64,0.4);
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .sale-desc { font-style: italic; margin-bottom: 2rem; }
+
+    .contact-link {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      border-bottom: 1px solid rgba(201,152,42,0.4);
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .contact-link:hover { color: var(--gold-bright); border-color: var(--gold-bright); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 1px solid rgba(201,152,42,0.1);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      color: rgba(176,196,200,0.4);
+      letter-spacing: 0.1em;
+    }
+
+    /* ── FLOATING COMPASS ── */
+    .compass {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 50px;
+      height: 50px;
+      opacity: 0.25;
+      animation: spin 20s linear infinite;
+      pointer-events: none;
+      z-index: 100;
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    /* ── SELECTION ── */
+    ::selection { background: var(--gold); color: var(--ink); }
+  </style>
+</head>
+<body>
+
+<!-- Floating compass -->
+<svg class="compass" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="50" cy="50" r="48" stroke="#c9982a" stroke-width="2"/>
+  <polygon points="50,10 55,50 50,55 45,50" fill="#f0c040"/>
+  <polygon points="50,90 55,50 50,45 45,50" fill="#8b3a0f"/>
+  <polygon points="10,50 50,45 55,50 50,55" fill="#c9982a"/>
+  <polygon points="90,50 50,55 45,50 50,45" fill="#c9982a"/>
+  <circle cx="50" cy="50" r="5" fill="#0a0705" stroke="#c9982a" stroke-width="1"/>
+  <text x="50" y="7" text-anchor="middle" fill="#f0c040" font-size="8" font-family="serif">N</text>
+  <text x="50" y="97" text-anchor="middle" fill="#c9982a" font-size="8" font-family="serif">S</text>
+  <text x="4"  y="53" text-anchor="middle" fill="#c9982a" font-size="8" font-family="serif">W</text>
+  <text x="96" y="53" text-anchor="middle" fill="#c9982a" font-size="8" font-family="serif">E</text>
+</svg>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+
+  <!-- Stars -->
+  <div class="stars" id="stars"></div>
+
+  <!-- Waves -->
+  <div class="waves">
+    <div class="wave wave-1">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,120 L0,120 Z" fill="rgba(13,61,86,0.6)"/>
+      </svg>
+    </div>
+    <div class="wave wave-2">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,20 1440,40 L1440,120 L0,120 Z" fill="rgba(26,96,128,0.3)"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="hero-content">
+    <p class="eyebrow">⚓ &nbsp; Est. in the Age of Sail &nbsp; ⚓</p>
+    <h1>Booty Bay</h1>
+    <p class="subtitle">The legendary pirate port where outlaws, merchants, and adventurers have gathered for centuries — and where your next big idea might just find its home.</p>
+    <div class="hero-cta">
+      <a href="#lore" class="btn btn-primary">Explore the Bay</a>
+      <a href="#forsale" class="btn btn-ghost">Acquire This Domain</a>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<div class="divider">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+<!-- ══════════ INTRO ══════════ -->
+<section id="lore">
+  <div class="intro-grid">
+    <div>
+      <p class="section-label">// The Legend</p>
+      <h2>Why Does Everyone Know Booty Bay?</h2>
+      <p>You don't have to be a gamer to feel the pull. <strong>Booty Bay is an idea</strong> — a place where the rules don't apply, where the rum flows freely, and where the only law is the one you make for yourself.</p>
+      <p>In World of Warcraft, it's a goblin-run port city in Stranglethorn Vale. But ask anyone who's ever spent a night there in-game, and they'll tell you it's something more: <strong>the first place the internet truly felt like home.</strong></p>
+      <p>Millions of players, across decades, made memories in this tiny pixel port. Deals were struck. Friendships formed. Epic loot was sold for far too cheap, and bought for far too much.</p>
+    </div>
+    <div>
+      <blockquote class="big-quote">
+        "There are two kinds of people in this world: those who know what <em>Booty Bay</em> is, and those who are about to find out."
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<div class="divider">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+<!-- ══════════ CARDS ══════════ -->
+<section>
+  <p class="section-label">// What Makes It Special</p>
+  <h2>The Four Laws of Booty Bay</h2>
+
+  <div class="cards">
+    <div class="card">
+      <span class="card-icon">⚓</span>
+      <h3>Neutral Ground</h3>
+      <p>In a world torn by faction war, Booty Bay belongs to no one — and everyone. Horde and Alliance walk the same docks, eye each other warily, and somehow manage not to kill each other. <strong>Mostly.</strong></p>
+    </div>
+    <div class="card">
+      <span class="card-icon">💀</span>
+      <h3>No Questions Asked</h3>
+      <p>The Steamwheedle Cartel runs this port on one simple principle: <strong>profit above all.</strong> Your name, your past, your faction — none of it matters if your gold is real.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">🍺</span>
+      <h3>The Best Tavern in Azeroth</h3>
+      <p>The Salty Sailor Tavern has seen more stories than any library. Pirates, adventurers, and the occasional dragon in disguise have all pulled up a barstool and ordered something strong.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">🦈</span>
+      <h3>The Sharks Are Real</h3>
+      <p>The waters around Booty Bay are beautiful, warm, and absolutely <strong>infested with sharks.</strong> A fitting metaphor for the economy inside the port. Swim carefully.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+<!-- ══════════ MAP / LORE ══════════ -->
+<section>
+  <div class="map-section">
+    <p class="section-label">// Lore & History</p>
+    <h2>A Brief & Slightly Dramatic History of the Bay</h2>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-year">Ancient<br/>Times</div>
+        <div class="tl-body">
+          <h3>The Jungle Claims Everything</h3>
+          <p>Before the goblins arrived, Stranglethorn Vale was an impenetrable jungle ruled by trolls, ancient beasts, and things that have no names in common tongue. The bay itself was just a cove — beautiful, dangerous, and utterly unknown.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">The<br/>Founding</div>
+        <div class="tl-body">
+          <h3>Baron Revilgaz Sees an Opportunity</h3>
+          <p>A shrewd goblin by the name of Baron Revilgaz looked at a jungle cove full of pirates and predators and thought: <strong>"This would make an excellent trade hub."</strong> He was not wrong. The Blackwater Raiders were hired. The port was built. The gold started flowing.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">Classic<br/>WoW Era</div>
+        <div class="tl-body">
+          <h3>Millions Discover the Bay</h3>
+          <p>When World of Warcraft launched in 2004, Booty Bay became one of the most memorable destinations in gaming history. Players crossed treacherous jungles, fought pirates, and emerged onto those sun-drenched docks with a feeling that's <strong>impossible to describe but impossible to forget.</strong></p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">Today</div>
+        <div class="tl-body">
+          <h3>The Legend Lives On</h3>
+          <p>Through every expansion, every year, every new generation of players — Booty Bay endures. It's a cultural landmark. A meme. A memory. A place that exists in the minds of millions of people who have never been to the Caribbean but somehow feel like they have.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+<!-- ══════════ FOR SALE ══════════ -->
+<section class="sale-section" id="forsale">
+  <div class="sale-box">
+    <span class="sale-tag">Premium Domain For Sale</span>
+    <span class="sale-domain">bootybay.io</span>
+    <p class="sale-desc">A rare, memorable, and instantly recognisable domain — perfect for a gaming platform, pirate-themed brand, entertainment startup, fan community, or anyone bold enough to claim the name.</p>
+    <p style="color: var(--fog); font-size: 0.9rem; margin-bottom: 2rem;">
+      .io domains are the gold standard for tech and gaming ventures.<br/>
+      <strong style="color: var(--parchment);">bootybay.io</strong> is available now.
+    </p>
+    <a href="mailto:dejan.madz@gmail.com" class="contact-link">Make an Offer → dejan.madz@gmail.com</a>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <p>⚓ &nbsp; BOOTYBAY.IO &nbsp; ⚓</p>
+  <p style="margin-top: 0.5rem;">The bay is open. The tide is always in.</p>
+</footer>
+
+<script>
+  // Generate stars
+  const starsEl = document.getElementById('stars');
+  for (let i = 0; i < 120; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    s.style.cssText = `
+      left: ${Math.random() * 100}%;
+      top: ${Math.random() * 70}%;
+      --d: ${2 + Math.random() * 4}s;
+      animation-delay: ${Math.random() * 4}s;
+      opacity: ${0.2 + Math.random() * 0.5};
+      width: ${Math.random() > 0.85 ? 3 : 2}px;
+      height: ${Math.random() > 0.85 ? 3 : 2}px;
+    `;
+    starsEl.appendChild(s);
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('section:not(.hero), .card, .tl-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
